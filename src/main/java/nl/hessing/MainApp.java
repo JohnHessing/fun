@@ -1,5 +1,8 @@
+package nl.hessing;
+
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparing;
 
@@ -14,36 +17,48 @@ public class MainApp {
         String msg;
 
         startTime = System.currentTimeMillis();
-        for (int x = 0; x < repeats; ++x) {
-            List<Integer> list1 = convertToIntegerList1(stringList);
-        }
+        IntStream.range(0, repeats).forEach(i -> {
+            List<Integer> list = convertToIntegerList1(stringList);
+            if (i == 0) {
+                showIntList(list);
+            }
+        });
         averageTime = (System.currentTimeMillis() - startTime) / repeats;
         msg = "Gemiddelde duur over " + repeats + " keer: " + averageTime + " ms";
-        System.out.println("\nList 1" + " (" + msg + ")");
+        System.out.println("List 1" + " (" + msg + ")\n");
 
         startTime = System.currentTimeMillis();
-        for (int x = 0; x < repeats; ++x) {
-            List<Integer> list2 = convertToIntegerList2(stringList);
-        }
+        IntStream.range(0, repeats).forEach(i -> {
+            List<Integer> list = convertToIntegerList2(stringList);
+            if (i == 0) {
+                showIntList(list);
+            }
+        });
         averageTime = (System.currentTimeMillis() - startTime) / repeats;
         msg = "Gemiddelde duur over " + repeats + " keer: " + averageTime + " ms";
-        System.out.println("\nList 2" + " (" + msg + ")");
+        System.out.println("List 2" + " (" + msg + ")\n");
 
         startTime = System.currentTimeMillis();
-        for (int x = 0; x < repeats; ++x) {
-            List<Integer> list3 = convertToIntegerList3(stringList);
-        }
+        IntStream.range(0, repeats).forEach(i -> {
+            List<Integer> list = convertToIntegerList3(stringList);
+            if (i == 0) {
+                showIntList(list);
+            }
+        });
         averageTime = (System.currentTimeMillis() - startTime) / repeats;
         msg = "Gemiddelde duur over " + repeats + " keer: " + averageTime + " ms";
-        System.out.println("\nList 3" + " (" + msg + ")");
+        System.out.println("List 3" + " (" + msg + ")\n");
 
         startTime = System.currentTimeMillis();
-        for (int x = 0; x < repeats; ++x) {
-            List<Integer> list4 = convertToIntegerList4(stringList);
-        }
+        IntStream.range(0, repeats).forEach(i -> {
+            List<Integer> list = convertToIntegerList4(stringList);
+            if (i == 0) {
+                showIntList(list);
+            }
+        });
         averageTime = (System.currentTimeMillis() - startTime) / repeats;
         msg = "Gemiddelde duur over " + repeats + " keer: " + averageTime + " ms";
-        System.out.println("\nList 4" + " (" + msg + ")");
+        System.out.println("List 4" + " (" + msg + ")\n");
 
         System.out.println();
 
@@ -77,7 +92,9 @@ public class MainApp {
     private static void testBooks2() {
         List<Book> books = getBooks();
 
-//        books.stream().sorted(comparing(Book::getAuthor).thenComparing(Book::getTitle)).map(book -> book.getAuthor() + " schreef " + book.getTitle()).forEach(str -> System.out.println(str));
+        books.stream().sorted(comparing(Book::getAuthor).thenComparing(Book::getTitle))
+                .map(book -> book.getAuthor() + " schreef " + book.getTitle()).forEach(System.out::println);
+
         String completeString = books.stream().sorted(comparing(Book::getAuthor).thenComparing(Book::getTitle))
                 .map(book -> book.getAuthor() + " schreef " + book.getTitle())
                 .reduce("Alles achter elkaar: ", (el1, el2) -> el1.concat(el2).concat(". "));

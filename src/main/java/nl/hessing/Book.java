@@ -1,4 +1,6 @@
-public class Book {
+package nl.hessing;
+
+class Book {
 
     private String title;
     private String author;
@@ -12,7 +14,7 @@ public class Book {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 
@@ -20,7 +22,7 @@ public class Book {
         return author;
     }
 
-    public void setAuthor(String author) {
+    void setAuthor(String author) {
         this.author = author;
     }
 }
